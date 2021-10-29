@@ -68,11 +68,16 @@ public class Path {
 	 {
 		 double result = 0.0;
 		 
+		 //Find the distance between the current point and the next point in the path, and add it to the total distance
 		 for(int i = 0; i < xCoords.length-1; i++)
-		 	{
-			//	g.setColor(Color.red);
-			//	g.drawLine(xCoords[i], yCoords[i], xCoords[i+1], yCoords[i+1]);		
-			}
+		 {
+			double distance;
+			
+			//Pythagoras
+			distance = Math.sqrt( (xCoords[i+1] - xCoords[i])^2 + (yCoords[i+1] - yCoords[i]));  
+			
+			result += distance;
+		 }
 		 
 		 return result;
 	 }

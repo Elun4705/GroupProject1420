@@ -28,7 +28,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	private static final long serialVersionUID = 1L;
 	
 	// Fields -- These variables will be part of the GameView object (that we make in GameControl).
-	
+	Path path;
 	private BufferedImage backdrop;
 	// I have removed the other fields.  Add them back in as part of the first checkpoint.
 	
@@ -45,12 +45,13 @@ public class GameView extends JPanel implements MouseListener, ActionListener
     	try
     	{
 	    	ClassLoader loader = this.getClass().getClassLoader();
-	    	InputStream is = loader.getResourceAsStream("resources/path_2.jpg");
+	    	InputStream is = loader.getResourceAsStream("resources/path_1.jpg");
 	    	backdrop = javax.imageio.ImageIO.read(is);
 	    	
 	    	Scanner pathScanner = new Scanner(loader.getResourceAsStream("resources/path.txt"));
 	    	
 	    	// I removed the line that builds the path.  You will add it back in.
+	    	path = new Path(pathScanner);
     	}
     	catch (IOException e)
     	{
@@ -84,6 +85,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
     	// This panel can send mouse events to any object that wants to 'listen' to those
     	// events.  I've removed the lines of code for the mouse listener and timer,
     	// feel free to re-add them as needed.
+    	this.addMouseListener(this);
     }
     
     /**
@@ -101,6 +103,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
     	
     	// I've removed the code that draws the path and the ball.  You will need
     	// to re-add it.
+    	path.draw(g);
     	
     	// You may also experiment with other drawing here.
     }
@@ -113,7 +116,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
     
 	public void mousePressed(MouseEvent e) 
 	{
-		// I've removed the line of code here -- feel free to re-add it.
+		//System.out.println(e.getX() + " " + e.getY());
 	}
 	
     public void mouseClicked(MouseEvent e) { }

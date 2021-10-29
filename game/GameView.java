@@ -106,6 +106,9 @@ public class GameView extends JPanel implements MouseListener, ActionListener
     	path.draw(g);
     	
     	// You may also experiment with other drawing here.
+    	
+    	g.fillOval(300, 300, 50, 50);
+    	
     }
     
     /* The following methods are required for mouse events.  I've collapsed some of them to

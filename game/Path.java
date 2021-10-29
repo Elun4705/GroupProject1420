@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.Scanner;
 
 /**
@@ -81,5 +82,53 @@ public class Path {
 		 
 		 return result;
 	 }
-	
+	 
+	 /** 
+	  * Given a percentage between 0% and 100%, this method calculates
+	  * the location along the path that is exactly this percentage
+	  * along the path. The location is returned in a Point object
+	  * (integer x and y), and the location is a screen coordinate.
+	  * 
+	  * If the percentage is less than 0%, the starting position is
+	  * returned. If the percentage is greater than 100%, the final
+	  * position is returned.
+	  * 
+	  * If students don't want to use Point objects, they may 
+	  * write or use another object to represent coordinates. 
+	  *
+	  * Caution: Students should never directly return a Point object
+	  * from a path list. It could be changed by the outside caller.
+	  * Instead, always create and return new point objects as
+	  * the result from this method.
+	  * 
+	  * @param percentTraveled a distance along the path
+	  * @return the screen coordinate of this position along the path
+	  */
+	  public Point getPathPosition (double percentTraveled)
+	  {
+		  Point finalPoint = null;
+		  double totalLength = getPathLength();
+		  double currentDistance = 0;
+		
+		  double totalDistance  = percentTraveled * totalLength;
+		  
+		  for (int i = 0; i < xCoords.length; i++) 
+		  {
+			  
+			  if ( currentDistance < totalDistance ) {
+				  
+				  currentDistance = currentDistance + Math.sqrt( (xCoords[i+1] - xCoords[i])^2 + (yCoords[i+1] - yCoords[i]));
+				  
+			  } else if (currentDistance == totalDistance) {
+				  
+				  finalPoint = new Point (xCoords[i], yCoords[i]);
+				  
+			  }
+			  
+		  }
+		  
+		  
+		  return finalPoint;
+		  
+	  }	
 }

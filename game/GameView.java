@@ -111,7 +111,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 		// You may also experiment with other drawing here.
 
 		Point point = path.getPathPosition(pathPercentage);
-		g.fillOval(point.x, point.y, 20, 20);
+		g.fillOval(point.x-10, point.y-10, 20, 20);
 
 	}
 
@@ -140,11 +140,12 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	{
 		// I've removed the lines of code here -- feel free to re-add it.
 		pathPercentage += 0.002;
+		this.repaint();
 		if(pathPercentage > 1)
 		{
 			pathPercentage = 0;
 		}
-		this.repaint();
+		repaint();
 		System.out.println(pathPercentage);
 
 	}

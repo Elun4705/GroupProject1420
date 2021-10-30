@@ -114,23 +114,23 @@ public class Path {
 
 		double totalDistance  = percentTraveled * totalLength;
 
-		for (int i = 0; i < xCoords.length-1; i++) 
+		for (int i = 0; i < xCoords.length; i++) 
 		{
-
-			currentDistance = currentDistance + Math.sqrt( (xCoords[i+1] - xCoords[i])*(xCoords[i+1] - xCoords[i]) + (yCoords[i+1] - yCoords[i])*(yCoords[i+1] - yCoords[i]));
+			segmentStart = i;
+			currentDistance = currentDistance + Math.sqrt(((xCoords[i+1] - xCoords[i])*(xCoords[i+1] - xCoords[i])) + ((yCoords[i+1] - yCoords[i])*(yCoords[i+1] - yCoords[i])));
 
 			if(currentDistance  >  totalDistance)
 			{
 				segmentStart = i;
-				currentDistance = currentDistance - Math.sqrt((xCoords[i+1] - xCoords[i])*(xCoords[i+1] - xCoords[i]) + (yCoords[i+1] - yCoords[i])*(yCoords[i+1] - yCoords[i]));
+				currentDistance = currentDistance + Math.sqrt(((xCoords[i+1] + xCoords[i])*(xCoords[i+1] + xCoords[i])) + ((yCoords[i+1] - yCoords[i])*(yCoords[i+1] - yCoords[i])));
 				break;
 			}		  
 		}
 
 		double segmentPercentage = currentDistance/totalDistance;
 
-		int xPos = (int) ((1-segmentPercentage)*xCoords[segmentStart] + (segmentPercentage)*xCoords[segmentStart+1]);
-		int yPos = (int) ((1-segmentPercentage)*yCoords[segmentStart] + (segmentPercentage)*yCoords[segmentStart+1]);
+		int xPos = (int) (((1-segmentPercentage)*xCoords[segmentStart]) + ((segmentPercentage)*xCoords[segmentStart]));
+		int yPos = (int) (((1-segmentPercentage)*yCoords[segmentStart]) + ((segmentPercentage)*yCoords[segmentStart]));
 
 		finalPoint = new Point(xPos, yPos);
 		System.out.println(finalPoint.x + " " + finalPoint.y);

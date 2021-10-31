@@ -87,7 +87,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 		// events.  I've removed the lines of code for the mouse listener and timer,
 		// feel free to re-add them as needed.
 		this.addMouseListener(this);
-		Timer timer = new Timer(17, this);
+		Timer timer = new Timer(16, this);
 		timer.start();
 	}
 

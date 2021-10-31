@@ -121,16 +121,15 @@ public class Path {
 
 			if(currentDistance  >  totalDistance)
 			{
-				segmentStart = i;
-				currentDistance = currentDistance + Math.sqrt(((xCoords[i+1] + xCoords[i])*(xCoords[i+1] + xCoords[i])) + ((yCoords[i+1] - yCoords[i])*(yCoords[i+1] - yCoords[i])));
+				currentDistance = totalDistance;
 				break;
 			}		  
 		}
 
 		double segmentPercentage = currentDistance/totalDistance;
 
-		int xPos = (int) (((1-segmentPercentage)*xCoords[segmentStart]) + ((segmentPercentage)*xCoords[segmentStart]));
-		int yPos = (int) (((1-segmentPercentage)*yCoords[segmentStart]) + ((segmentPercentage)*yCoords[segmentStart]));
+		int xPos = (int) (((1-segmentPercentage)*xCoords[segmentStart]) + ((segmentPercentage)*xCoords[segmentStart+1]));
+		int yPos = (int) (((1-segmentPercentage)*yCoords[segmentStart]) + ((segmentPercentage)*yCoords[segmentStart+1]));
 
 		finalPoint = new Point(xPos, yPos);
 		System.out.println(finalPoint.x + " " + finalPoint.y);

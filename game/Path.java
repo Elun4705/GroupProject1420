@@ -83,6 +83,18 @@ public class Path {
 		return result;
 	}
 
+	/**
+	 * 
+	 * @param segment
+	 * @return
+	 */
+	public double getSegmentLength(int segment)
+	{
+		double distance = Math.pow(xCoords[segment+1] - xCoords[segment],2) +  Math.pow(yCoords[segment+1] - yCoords[segment],2) ;
+		distance = Math.sqrt(distance);		
+		return distance;
+	}
+
 	/** 
 	 * Given a percentage between 0% and 100%, this method calculates
 	 * the location along the path that is exactly this percentage
@@ -109,30 +121,46 @@ public class Path {
 		Point finalPoint;
 		double totalLength = getPathLength();
 		double currentDistance = 0;
+		double segmentPercentage = 0.0;
 
 		int segmentStart = 0;
 
+		//Find how far we need to travel in pixels
 		double totalDistance  = percentTraveled * totalLength;
 
-		for (int i = 0; i < xCoords.length; i++) 
+		//find what segment we are in
+		//add up segment lengths untill we pass the required distance
+		while(currentDistance < totalDistance)
 		{
-			segmentStart = i;
-			currentDistance = currentDistance + Math.sqrt(((xCoords[i+1] - xCoords[i])*(xCoords[i+1] - xCoords[i])) + ((yCoords[i+1] - yCoords[i])*(yCoords[i+1] - yCoords[i])));
+			currentDistance += getSegmentLength(segmentStart);
+			segmentStart++;			
+		}	
+		//moves back to correct segment where point is in
+		segmentStart--;
 
-			if(currentDistance  >  totalDistance)
-			{
-				currentDistance = totalDistance;
-				break;
-			}		  
+
+		// find the left over distance we need to travel
+		double firstSegmentLengths = 0.0;
+		//add up all the segments before the one we are in
+		for (int i = 0; i < segmentStart; i++)
+		{
+			firstSegmentLengths +=  getSegmentLength(i);
 		}
 
-		double segmentPercentage = currentDistance/totalDistance;
+		//find how far from the start of our segment we need to travel
+		double leftOverDistance = totalDistance - firstSegmentLengths;
 
-		int xPos = (int) (((1-segmentPercentage)*xCoords[segmentStart]) + ((segmentPercentage)*xCoords[segmentStart+1]));
-		int yPos = (int) (((1-segmentPercentage)*yCoords[segmentStart]) + ((segmentPercentage)*yCoords[segmentStart+1]));
+		double currentSegmentLength = getSegmentLength(segmentStart);
+
+		//find what percentage of the segment we need to travel
+		segmentPercentage = leftOverDistance/currentSegmentLength;
+
+		//use the percentage in the weighted sum to find the final point
+		int xPos = (int) ((1-segmentPercentage)*xCoords[segmentStart] + (segmentPercentage)*xCoords[segmentStart+1]);
+		int yPos = (int) ((1-segmentPercentage)*yCoords[segmentStart] + (segmentPercentage)*yCoords[segmentStart+1]);
 
 		finalPoint = new Point(xPos, yPos);
-		System.out.println(finalPoint.x + " " + finalPoint.y);
+
 		return finalPoint;
 
 	}	

@@ -87,7 +87,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 		// events.  I've removed the lines of code for the mouse listener and timer,
 		// feel free to re-add them as needed.
 		this.addMouseListener(this);
-		Timer timer = new Timer(16, this);
+		Timer timer = new Timer(17, this);
 		timer.start();
 	}
 
@@ -111,7 +111,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 		// You may also experiment with other drawing here.
 
 		Point point = path.getPathPosition(pathPercentage);
-		g.fillOval(point.x-10, point.y-10, 20, 20);
+		g.fillOval(point.x+0, point.y+0, 20, 20);
 
 	}
 
@@ -140,13 +140,12 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	{
 		// I've removed the lines of code here -- feel free to re-add it.
 		pathPercentage += 0.002;
-		this.repaint();
 		if(pathPercentage > 1)
 		{
 			pathPercentage = 0;
 		}
-		repaint();
-		System.out.println(pathPercentage);
+		this.repaint();
+		//System.out.println(pathPercentage);
 
 	}
 }

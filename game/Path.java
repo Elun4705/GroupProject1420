@@ -29,7 +29,7 @@ public class Path {
 		//Finds how many coordinate pairs are in the path
 		int pathSize = s.nextInt();
 
-		//Declares parrallel arrays of the correct size
+		//Declares parallel arrays of the correct size
 		xCoords = new int[pathSize];
 		yCoords = new int[pathSize];
 

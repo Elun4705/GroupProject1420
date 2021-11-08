@@ -28,8 +28,8 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	private static final long serialVersionUID = 1L;
 
 	// Fields -- These variables will be part of the GameView object (that we make in GameControl).
-	Path path;
-	double pathPercentage = 0;
+	private Path path;
+	private double pathPercentage = 0;
 	private BufferedImage backdrop;
 	// I have removed the other fields.  Add them back in as part of the first checkpoint.
 
@@ -139,7 +139,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		// I've removed the lines of code here -- feel free to re-add it.
-		pathPercentage += 0.002;
+		pathPercentage += 0.01;
 		if(pathPercentage > 1)
 		{
 			pathPercentage = 0;

@@ -87,7 +87,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	public void paint (Graphics g)
 	{
 		// Draw the backdrop.
-		ResourceLoader loader = ResourceLoader.getLoader();
+		ResourceLoader loader = ResourceLoader.getLoader(); // Gets the resource loader object
 		BufferedImage backdrop = loader.getImage("path_1.jpg");
 		
 		Path path = loader.getPath("path.txt");

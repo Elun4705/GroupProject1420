@@ -31,6 +31,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	private Path path;
 	private double pathPercentage = 0;
 	private BufferedImage backdrop;
+	
 	// I have removed the other fields.  Add them back in as part of the first checkpoint.
 
 	/**
@@ -43,22 +44,7 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 		// but be careful to make sure your resources folder is a java package in the src
 		// portion of your project.
 
-		try
-		{
-			ClassLoader loader = this.getClass().getClassLoader();
-			InputStream is = loader.getResourceAsStream("resources/path_1.jpg");
-			backdrop = javax.imageio.ImageIO.read(is);
-
-			Scanner pathScanner = new Scanner(loader.getResourceAsStream("resources/path.txt"));
-
-			// I removed the line that builds the path.  You will add it back in.
-			path = new Path(pathScanner);
-		}
-		catch (IOException e)
-		{
-			System.out.println("Could not load the backdrop or path.");
-			System.exit(0);
-		}
+		
 
 		// Build the frame.  The frame object represents the application 'window'.
 
@@ -101,7 +87,11 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	public void paint (Graphics g)
 	{
 		// Draw the backdrop.
-
+		ResourceLoader loader = ResourceLoader.getLoader();
+		BufferedImage backdrop = loader.getImage("path_1.jpg");
+		
+		Path path = loader.getPath("path.txt");
+		
 		g.drawImage(backdrop, 0, 0, null);
 
 		// I've removed the code that draws the path and the ball.  You will need

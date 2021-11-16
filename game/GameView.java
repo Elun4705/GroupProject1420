@@ -21,31 +21,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GameView extends JPanel implements MouseListener, ActionListener
+public class GameView extends JPanel 
 {
 	// This constant is needed to get rid of a warning.  It won't matter to us.
 
 	private static final long serialVersionUID = 1L;
 
 	// Fields -- These variables will be part of the GameView object (that we make in GameControl).
-	private Path path;
-	private double pathPercentage = 0;
-	private BufferedImage backdrop;
-	
+	private GameState state;
 	// I have removed the other fields.  Add them back in as part of the first checkpoint.
 
 	/**
 	 * Our GameView constructor.  The 'view' is the GUI (Graphical User Interface) and
 	 * this constructor builds a JFrame (window) so the user can see our 'drawing'.
 	 */
-	public GameView ()
+	public GameView (GameState state)
 	{
-		// Load the backdrop image and path from the resources folder.  Feel free to alter this,
-		// but be careful to make sure your resources folder is a java package in the src
-		// portion of your project.
-
-		
-
+		this.state = state;
 		// Build the frame.  The frame object represents the application 'window'.
 
 		JFrame frame = new JFrame ("Tower Defense 2021");
@@ -72,9 +64,8 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 		// This panel can send mouse events to any object that wants to 'listen' to those
 		// events.  I've removed the lines of code for the mouse listener and timer,
 		// feel free to re-add them as needed.
-		this.addMouseListener(this);
-		Timer timer = new Timer(17, this);
-		timer.start();
+
+		
 	}
 
 	/**
@@ -86,56 +77,11 @@ public class GameView extends JPanel implements MouseListener, ActionListener
 	 */
 	public void paint (Graphics g)
 	{
-		// Draw the backdrop.
-		ResourceLoader loader = ResourceLoader.getLoader(); // Gets the resource loader object
-		BufferedImage backdrop = loader.getImage("path_1.jpg");
-		
-		Path path = loader.getPath("path.txt");
-		
-		g.drawImage(backdrop, 0, 0, null);
-
+		state.drawAll(g);
 		// I've removed the code that draws the path and the ball.  You will need
-		// to re-add it.
-		path.draw(g);
-
-		// You may also experiment with other drawing here.
-
-		Point point = path.getPathPosition(pathPercentage);
-		g.fillOval(point.x-10, point.y-10, 20, 20);
+	
 
 	}
 
-	/* The following methods are required for mouse events.  I've collapsed some of them to
-	 * make it easier to see which one you need.  Also note:  You'll need to register
-	 * 'this' object as a listener to its own events.  See the missing code in the
-	 * constructor.
-	 */
 
-	public void mousePressed(MouseEvent e) 
-	{
-		//System.out.println(e.getX() + " " + e.getY());
-	}
-
-	public void mouseClicked(MouseEvent e) { }
-	public void mouseReleased(MouseEvent e) { }
-	public void mouseEntered(MouseEvent e) { }
-	public void mouseExited(MouseEvent e) { }
-
-	/* The following method is required for action events.  You'll need to set up
-	 * the timer in the constructor in order for this method to be automatically
-	 * called.  Re-add the missing code in the constructor.
-	 */
-
-	public void actionPerformed(ActionEvent e) 
-	{
-		// I've removed the lines of code here -- feel free to re-add it.
-		pathPercentage += 0.01;
-		if(pathPercentage > 1)
-		{
-			pathPercentage = 0;
-		}
-		this.repaint();
-		//System.out.println(pathPercentage);
-
-	}
 }

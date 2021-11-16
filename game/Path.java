@@ -133,10 +133,12 @@ public class Path {
 		while(currentDistance < totalDistance)
 		{
 			currentDistance += getSegmentLength(segmentStart);
-			segmentStart++;			
+			if(currentDistance < totalDistance)
+			{
+				segmentStart++;	
+			}
+					
 		}	
-		//moves back to correct segment where point is in
-		segmentStart--;
 
 
 		// find the left over distance we need to travel

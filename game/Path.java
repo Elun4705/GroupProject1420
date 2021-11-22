@@ -42,22 +42,6 @@ public class Path {
 
 	}
 
-	/**
-	 * Draws the current path to the screen (to wherever the graphics object points)
-	 * using a highly-visible color.
-	 * 
-	 * @param g   a graphics object
-	 */
-	public void draw(Graphics g)
-	{
-		//draws a line between 
-		for(int i = 0; i < xCoords.length-1; i++)
-		{
-			g.setColor(Color.red);
-			g.drawLine(xCoords[i], yCoords[i], xCoords[i+1], yCoords[i+1]);		
-		}
-	}
-
 	/** 
 	 * Returns the total length of the path. Since the path
 	 * is specified using screen coordinates, the length is

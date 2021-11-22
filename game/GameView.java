@@ -51,7 +51,7 @@ public class GameView extends JPanel
 
 		// Set the size of 'this' panel to match the size of the backdrop.    	
 
-		Dimension d = new Dimension(600, 600);
+		Dimension d = new Dimension(800, 600);
 		this.setMinimumSize(d);
 		this.setPreferredSize(d);
 		this.setMaximumSize(d);

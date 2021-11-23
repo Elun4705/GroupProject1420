@@ -3,25 +3,16 @@
  */
 package game;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
-public class GameView extends JPanel 
+public class GameView extends JPanel implements MouseListener, MouseMotionListener
 {
 	// This constant is needed to get rid of a warning.  It won't matter to us.
 
@@ -64,6 +55,9 @@ public class GameView extends JPanel
 		// This panel can send mouse events to any object that wants to 'listen' to those
 		// events.  I've removed the lines of code for the mouse listener and timer,
 		// feel free to re-add them as needed.
+		
+		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
 
 		
 	}
@@ -83,5 +77,35 @@ public class GameView extends JPanel
 
 	}
 
+	/* The following methods are required for mouse events.  I've collapsed some of them to
+	 * make it easier to see which one you need.  Also note:  You'll need to register
+	 * 'this' object as a listener to its own events.  See the missing code in the
+	 * constructor.
+	 */
+	
+	public void mousePressed(MouseEvent e) 
+	{
+		
+		state.setMouseClicked();
+		
+	}
+	
+	public void mouseClicked(MouseEvent e) { }
+	public void mouseReleased(MouseEvent e) { }
+	public void mouseEntered(MouseEvent e) { }
+	public void mouseExited(MouseEvent e) { }
 
+	@Override
+	public void mouseDragged(MouseEvent e) 
+	{
+		state.setMouseLocation(e.getX(), e.getY());
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) 
+	{
+		state.setMouseLocation(e.getX(), e.getY());
+		
+	}
 }

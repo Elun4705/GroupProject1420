@@ -1,7 +1,5 @@
 package game;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Scanner;
 
@@ -58,7 +56,7 @@ public class Path {
 		{
 			double distance;
 
-			//Pythagoras
+			// Pythagorean
 			distance = Math.sqrt( (xCoords[i+1] - xCoords[i])*(xCoords[i+1] - xCoords[i]) + (yCoords[i+1] - yCoords[i])*(yCoords[i+1] - yCoords[i]));  
 
 			result += distance;

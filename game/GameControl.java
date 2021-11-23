@@ -5,7 +5,6 @@ package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
 
@@ -32,14 +31,12 @@ public class GameControl implements Runnable, ActionListener
     	view = new GameView (state);
     	
     	state.addGameObject(new Backdrop());
-    	state.addGameObject(new BlueCircle(0.0));
-    	state.addGameObject(new BlueCircle(0.5));
+    	state.addGameObject(new Menu(state));
+    	state.addGameObject(new Trooper(0.0));
+    	state.addGameObject(new DarkTrooper(0.0));
     	
-    	//add a blue circle
     	
-    	// Start the animation loop.
-    	
-    	//take timer out of GameView
+    	// Take timer out of GameView
     	Timer timer = new Timer(17, this);
 		timer.start();
     }
@@ -56,21 +53,3 @@ public class GameControl implements Runnable, ActionListener
 		view.repaint();
 	}
 }
-
-
-
-///* The following methods are required for mouse events.  I've collapsed some of them to
-// * make it easier to see which one you need.  Also note:  You'll need to register
-// * 'this' object as a listener to its own events.  See the missing code in the
-// * constructor.
-// */
-//
-//public void mousePressed(MouseEvent e) 
-//{
-//	//System.out.println(e.getX() + " " + e.getY());
-//}
-//
-//public void mouseClicked(MouseEvent e) { }
-//public void mouseReleased(MouseEvent e) { }
-//public void mouseEntered(MouseEvent e) { }
-//public void mouseExited(MouseEvent e) { }

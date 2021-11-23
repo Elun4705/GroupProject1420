@@ -1,12 +1,14 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
 
 public class Menu implements Animatable {
+	
+	private GameState state;
 
-	public Menu() {
-		// TODO Auto-generated constructor stub
+	public Menu(GameState state) {
+		this.state = state;
 	}
 
 	@Override
@@ -17,7 +19,8 @@ public class Menu implements Animatable {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(new Color(0.5f, 0.2f, 1f));
+		g.fillRect(600, 0, 300, 600);
 		
 	}
 

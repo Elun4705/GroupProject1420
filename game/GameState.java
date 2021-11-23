@@ -13,6 +13,9 @@ public class GameState
 	List<Animatable> gameObjects;
 	//list of animatable things
 	
+	int mouseX, mouseY;
+	boolean mouseClicked;
+	
 	public GameState ()
 	{
 		gameObjects = new ArrayList<Animatable>();
@@ -41,4 +44,36 @@ public class GameState
 			object.draw(g);
 		}
 	}
+	
+	public void setMouseLocation(int x, int y)
+	{
+		mouseX = x;
+		mouseY = y;
+	}
+	
+	public int getMouseX()
+	{
+		return mouseX;
+	}
+	
+	public int getMouseY()
+	{
+		return mouseY;
+	}
+	
+	public boolean isMouseClicked ()
+	{
+		return mouseClicked;
+	}
+	
+	public void setMouseClicked ()
+	{
+		mouseClicked = true;
+	}
+	
+	public void consumeMouseClicked()
+	{
+		mouseClicked = false;
+	}
+	
 }

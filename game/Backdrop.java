@@ -22,8 +22,6 @@ public class Backdrop implements Animatable {
 		ResourceLoader loader = ResourceLoader.getLoader(); // Gets the resource loader object
 		BufferedImage backdrop = loader.getImage("path_1.jpg");
 		
-		Path path = loader.getPath("path.txt");
-		
 		g.drawImage(backdrop, 0, 0, null);
 
 	}

@@ -13,8 +13,10 @@ public class GameState
 	List<Animatable> gameObjects;
 	//list of animatable things
 	
-	int mouseX, mouseY;
+	int mouseX, mouseY; 
+	int credits = 100, lifeCounter = 10, score = 0;
 	boolean mouseClicked;
+	boolean gameOver;
 	
 	public GameState ()
 	{
@@ -74,6 +76,22 @@ public class GameState
 	public void consumeMouseClicked()
 	{
 		mouseClicked = false;
+	}
+	
+	public int getLifeCounter()
+	{
+		return lifeCounter;
+	}
+	
+	public int getScore()
+	{
+		return score;
+	}
+	
+	public boolean setGameOver(boolean condition)
+	{
+		boolean gameOver = condition;
+		return gameOver;
 	}
 	
 }

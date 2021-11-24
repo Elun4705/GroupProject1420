@@ -30,6 +30,7 @@ public class Trooper extends Enemy
 		{
 			//position = 0.0;
 			state.removeGameObject(this);
+			state.changeLifeCounter(-3);
 		}
 	}
 

@@ -39,7 +39,7 @@ public class GameControl implements Runnable, ActionListener
     	
     	
     	// Take timer out of GameView
-    	Timer timer = new Timer(17, this);
+    	Timer timer = new Timer(1/*17*/, this);
 		timer.start();
     }
 
@@ -52,13 +52,22 @@ public class GameControl implements Runnable, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		//handle the wave
-		WaveProcessor.evaluateCurrentFrame(wave, framesElapsed, state);
-		
-		state.updateAll();
-		view.repaint();
-		
-		state.consumeMouseClicked();
-		framesElapsed++;
+		if (state.getGameOver() == false) 
+		{
+			//handle the wave
+			WaveProcessor.evaluateCurrentFrame(wave, framesElapsed, state);
+			state.updateAll();
+			view.repaint();
+			state.consumeMouseClicked();
+			framesElapsed++;
+		}
+		//check if game has ended
+		if(state.getLifeCounter() <= 0 && state.getGameOver() == false)
+		{
+			state.setGameOver(true);
+			state.addGameObject(new GameOver());
+			state.updateAll();
+			view.repaint();
+		}
 	}
 }

@@ -19,7 +19,7 @@ public class GameState
 	private int mouseX, mouseY; 
 	private int credits = 100, lifeCounter = 10, score = 0;
 	private boolean mouseClicked;
-	private boolean gameOver;
+	private boolean gameOver = false;
 	
 	public GameState ()
 	{
@@ -109,6 +109,11 @@ public class GameState
 		return lifeCounter;
 	}
 	
+	public void changeLifeCounter(int delta)
+	{
+		lifeCounter += delta;
+	}
+	
 	public int getCredits()
 	{
 		return credits;
@@ -123,10 +128,14 @@ public class GameState
 		return score;
 	}
 	
-	public boolean setGameOver(boolean condition)
+	public boolean getGameOver()
 	{
-		boolean gameOver = condition;
 		return gameOver;
+	}
+	public void setGameOver(boolean condition)
+	{
+		gameOver = condition;
+
 	}
 	
 }

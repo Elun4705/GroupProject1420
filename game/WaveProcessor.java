@@ -16,10 +16,9 @@ public class WaveProcessor
 			case "x":
 				state.addGameObject(new DarkTrooper(0.0, state));
 			break;
-			
 			case "!":
 				System.exit(0);
-				break;
+			break;
 		}
 	}
 

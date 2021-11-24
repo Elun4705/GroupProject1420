@@ -35,6 +35,7 @@ public class DarkTrooper extends Enemy {
 		{
 
 			state.removeGameObject(this);
+			state.changeLifeCounter(-3);
 		}
 		
 	}

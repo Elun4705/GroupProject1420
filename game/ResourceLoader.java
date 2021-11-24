@@ -17,6 +17,7 @@ public class ResourceLoader {
 	
 	HashMap <String, BufferedImage> loadedImages = new HashMap<String, BufferedImage>();
 	HashMap <String, Path> loadedPath = new HashMap<String, Path>();
+	HashMap <String, Wave> loadedWave = new HashMap<String, Wave>();
 	
 	private static ResourceLoader loader = null;
 	
@@ -106,9 +107,28 @@ public class ResourceLoader {
 			loadedPath.put(pathName, path);
 			
 			return path;
-		}
+		}			
+	}
+	
+	public Wave getWave(String waveName)
+	{
 		
-		
+		if (loadedImages.get(waveName) != null)
+		{
+			return loadedWave.get(waveName);
+			
+		} else {
+			
+			ClassLoader loader = this.getClass().getClassLoader();
+			
+			Scanner waveScanner = new Scanner(loader.getResourceAsStream("resources/"+waveName));
+			
+			Wave wave = new Wave(waveScanner);
+			
+			loadedWave.put(waveName, wave);
+			
+			return wave;
+		}			
 	}
 
 }

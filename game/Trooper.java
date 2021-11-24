@@ -7,10 +7,9 @@ import java.awt.Point;
 public class Trooper extends Enemy 
 {
 	
-	private double position;
-	
-	public Trooper(double position) {
-		this.position = position;
+	public Trooper(double position, GameState state) 
+	{
+		super(position, state);
 	}
 	
 	public void draw(Graphics g) {
@@ -29,7 +28,16 @@ public class Trooper extends Enemy
 		position += 0.001;
 		if(position >= 1.0)
 		{
-			position = 0.0;
+			//position = 0.0;
+			state.removeGameObject(this);
 		}
+	}
+
+	@Override
+	public Point getLocation() 
+	{
+		Path path = ResourceLoader.getLoader().getPath("path.txt");
+		Point point = path.getPathPosition(position);
+		return point;
 	}
 }

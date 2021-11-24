@@ -13,7 +13,9 @@ public class GameControl implements Runnable, ActionListener
 	//Fields
 	GameView view;
 	GameState state;
+	Wave wave = ResourceLoader.getLoader().getWave("wave.txt");
 	
+	int framesElapsed = 0;
     public GameControl ()
     {
     	// I moved all the code into a function named 'run' below.
@@ -32,8 +34,8 @@ public class GameControl implements Runnable, ActionListener
     	
     	state.addGameObject(new Backdrop());
     	state.addGameObject(new Menu(state));
-    	state.addGameObject(new Trooper(0.0));
-    	state.addGameObject(new DarkTrooper(0.0));
+    //	state.addGameObject(new Trooper(0.0,state));
+    	//state.addGameObject(new DarkTrooper(0.0,state));
     	
     	
     	// Take timer out of GameView
@@ -49,7 +51,14 @@ public class GameControl implements Runnable, ActionListener
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		//handle the wave
+		WaveProcessor.evaluateCurrentFrame(wave, framesElapsed, state);
+		
 		state.updateAll();
 		view.repaint();
+		
+		state.consumeMouseClicked();
+		framesElapsed++;
 	}
 }

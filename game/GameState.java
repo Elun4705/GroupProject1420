@@ -10,26 +10,38 @@ import java.util.ArrayList;
 public class GameState 
 {
 	//Fields
-	List<Animatable> gameObjects;
+	private List<Animatable> gameObjects;
 	//list of animatable things
 	
-	int mouseX, mouseY; 
-	int credits = 100, lifeCounter = 10, score = 0;
-	boolean mouseClicked;
-	boolean gameOver;
+	private List<Animatable> objectsToAdd;
+	private List<Animatable> objectsToRemove;
+ 	
+	private int mouseX, mouseY; 
+	private int credits = 100, lifeCounter = 10, score = 0;
+	private boolean mouseClicked;
+	private boolean gameOver;
 	
 	public GameState ()
 	{
 		gameObjects = new ArrayList<Animatable>();
+		
+		objectsToRemove = new ArrayList<Animatable>();
+		objectsToAdd = new ArrayList<Animatable>();
 	}
 	
 	
 	public void addGameObject(Animatable object) 
 	{
 		
-		gameObjects.add(object);
+		objectsToAdd.add(object);
 		
 	}
+	
+	public void removeGameObject(Animatable object)
+	{
+		objectsToRemove.add(object);
+	}
+	
 	
 	public void updateAll()
 	{
@@ -37,6 +49,20 @@ public class GameState
 		{
 			object.update(0);
 		}
+		
+		//add objects to be added
+		for(Animatable object : objectsToAdd)
+		{
+			gameObjects.add(object);
+		}
+		objectsToAdd.clear();
+		
+		//remove objects to be removed
+		for(Animatable object : objectsToRemove)
+		{
+			gameObjects.remove(object);
+		}
+		objectsToRemove.clear();		
 	}
 	
 	public void drawAll(Graphics g)
@@ -83,6 +109,15 @@ public class GameState
 		return lifeCounter;
 	}
 	
+	public int getCredits()
+	{
+		return credits;
+	}
+	
+	public void changeCredits(int delta)
+	{
+		credits += delta;
+	}
 	public int getScore()
 	{
 		return score;

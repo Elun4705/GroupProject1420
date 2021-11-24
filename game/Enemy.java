@@ -1,15 +1,24 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Point;
 
 public abstract class Enemy implements Animatable {
 	
-	public Enemy() {}
+	protected double position;
+	protected GameState state;
+	
+	public Enemy(double position, GameState state) 
+	{
+		this.position = position;
+		this.state = state;
+	}
 
-	@Override
+
 	public abstract void update(double timeElapsed);
 
-	@Override
 	public abstract void draw(Graphics g);
+	
+	public abstract Point getLocation();
 	
 }

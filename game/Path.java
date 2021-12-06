@@ -39,6 +39,28 @@ public class Path {
 		}
 
 	}
+	
+	public Point returnClosestPoint(int xPos, int yPos)
+	{
+		Point inputPoint = new Point(xPos,yPos);
+		Point closestPoint = new Point(0,0);
+		Point pathPoint = new Point(xCoords[0],yCoords[0]);
+		
+		double smallestDistance = inputPoint.distance(pathPoint);
+		for(int i = 0; i < xCoords.length; i++)
+		{
+			pathPoint = new Point(xCoords[i],yCoords[i]);
+			
+			if(inputPoint.distance(pathPoint) >= smallestDistance)
+			{
+				smallestDistance = inputPoint.distance(pathPoint);
+				closestPoint = pathPoint;
+			}
+			
+		}
+		
+		return closestPoint;
+	}
 
 	/** 
 	 * Returns the total length of the path. Since the path

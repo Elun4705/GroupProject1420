@@ -22,6 +22,7 @@ public class Menu implements Animatable {
 		if(justCreated)
 		{
 			state.addGameObject(new MenuTower(650,300,state));
+			state.addGameObject(new MenuTowerSauron(650,200,state));
 			justCreated = false;
 		}
 		

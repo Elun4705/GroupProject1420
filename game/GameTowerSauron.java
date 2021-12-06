@@ -3,7 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class GameTowerSauron extends Tower
+public class GameTowerSauron extends TowerSauron
 {
 
 	public GameTowerSauron(int xPosition, int yPosition, GameState state) {

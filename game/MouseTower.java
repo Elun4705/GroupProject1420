@@ -34,8 +34,11 @@ public class MouseTower extends Tower
 	@Override
 	public void draw(Graphics g) 
 	{
-		g.setColor(Color.GREEN);
-		g.fillRect(xPosition-12, yPosition-20, 25, 40);
+		g.setColor(Color.BLACK);
+		g.fillRect(xPosition, yPosition, 25, 40);
+		
+		g.setColor(Color.ORANGE);
+		g.fillOval(xPosition, yPosition-10, 25, 25);
 	}
 
 }

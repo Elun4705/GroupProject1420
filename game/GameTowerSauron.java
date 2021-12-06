@@ -13,7 +13,19 @@ public class GameTowerSauron extends TowerSauron
 
 	@Override
 	public void update(double timeElapsed) {
-		// TODO Auto-generated method stub
+		
+		Enemy enemy = state.getClosestEnemy(xPosition, yPosition);
+		//System.out.println(enemy);
+		if (enemy != null)
+		{
+			if(enemy.getLocation().distance(xPosition,yPosition) < 100.0)
+			{
+				enemy.takeDamage(1);
+				state.addGameObject(new Lava(xPosition, yPosition, state, enemy.getLocation().x, enemy.getLocation().y));
+				
+			}
+		}
+		
 		
 	}
 

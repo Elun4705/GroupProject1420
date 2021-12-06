@@ -7,6 +7,11 @@ import java.awt.Graphics;
 public class GameOver extends Effects
 {
 
+	public GameOver(GameState state) {
+		super(state);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void update(double timeElapsed) {
 		// TODO Auto-generated method stub

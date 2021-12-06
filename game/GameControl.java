@@ -76,7 +76,7 @@ public class GameControl implements Runnable, ActionListener
 		if(state.getLifeCounter() <= 0 && state.getGameOver() == false)
 		{
 			state.setGameOver(true);
-			state.addGameObject(new GameOver());
+			state.addGameObject(new GameOver(state));
 			state.updateAll();
 			view.repaint();
 		}

@@ -51,7 +51,7 @@ public class Path {
 		{
 			pathPoint = new Point(xCoords[i],yCoords[i]);
 			
-			if(inputPoint.distance(pathPoint) >= smallestDistance)
+			if(inputPoint.distance(pathPoint) <= smallestDistance)
 			{
 				smallestDistance = inputPoint.distance(pathPoint);
 				closestPoint = pathPoint;

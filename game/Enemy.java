@@ -7,6 +7,7 @@ public abstract class Enemy implements Animatable {
 	
 	protected double position;
 	protected GameState state;
+	protected int health;
 	
 	public Enemy(double position, GameState state) 
 	{
@@ -16,6 +17,8 @@ public abstract class Enemy implements Animatable {
 
 
 	public abstract void update(double timeElapsed);
+	
+	public abstract void takeDamage(int damage);
 
 	public abstract void draw(Graphics g);
 	

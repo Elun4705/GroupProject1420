@@ -11,6 +11,7 @@ public class DarkTrooper extends Enemy {
 	public DarkTrooper(double position, GameState state) 
 	{
 		super(position, state);
+		health = 30;
 	}
 	
 	
@@ -21,7 +22,7 @@ public class DarkTrooper extends Enemy {
 		Path path = loader.getPath("path.txt");
 		
 		Point point = path.getPathPosition(position);
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
 		g.fillOval(point.x-10, point.y-10, 15, 15);
 	}
 
@@ -38,6 +39,13 @@ public class DarkTrooper extends Enemy {
 			state.changeLifeCounter(-3);
 		}
 		
+		if (health <= 0)
+		{
+			state.removeGameObject(this);
+			state.changeCredits(5);
+			state.changeScore(10);
+		}
+		
 	}
 
 
@@ -48,6 +56,13 @@ public class DarkTrooper extends Enemy {
 		Path path = ResourceLoader.getLoader().getPath("path.txt");
 		Point point = path.getPathPosition(position);
 		return point;
+	}
+
+
+	@Override
+	public void takeDamage(int damage) {
+		health -= damage;
+		
 	}
 	
 }

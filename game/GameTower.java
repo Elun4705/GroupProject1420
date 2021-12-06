@@ -13,7 +13,7 @@ public class GameTower extends Tower
 
 	@Override
 	public void update(double timeElapsed) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

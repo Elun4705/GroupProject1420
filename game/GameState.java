@@ -5,6 +5,7 @@ package game;
 
 import java.util.List;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class GameState 
@@ -124,9 +125,15 @@ public class GameState
 	{
 		credits += delta;
 	}
+	
 	public int getScore()
 	{
 		return score;
+	}
+	
+	public int changeScore(int delta)
+	{
+		return score += delta;
 	}
 	
 	public boolean getGameOver()
@@ -148,4 +155,29 @@ public class GameState
 		gameStarted = true;
 	}
 	
+	public Enemy getClosestEnemy(int xPos, int yPos)
+	{
+		Point inputPoint = new Point(xPos,yPos);
+		Enemy closestEnemy = null;
+		Point EnemyPoint = new Point(0,0);
+		
+		double smallestDistance = 100000000.0;
+		for(Animatable object : gameObjects)
+		{
+			if(object.getClass() == Trooper.class || object.getClass() == DarkTrooper.class)
+			{
+				EnemyPoint = ((Enemy) object).getLocation();
+				//System.out.println(EnemyPoint);
+				if(inputPoint.distance(EnemyPoint) <= smallestDistance)
+				{
+					smallestDistance = inputPoint.distance(EnemyPoint);
+					closestEnemy = (Enemy) object;
+				}
+			}	
+			
+			
+		}
+		
+		return closestEnemy;
+	}
 }

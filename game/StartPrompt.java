@@ -9,7 +9,7 @@ public class StartPrompt extends Effects
 	GameState state;
 	public StartPrompt(GameState state)
 	{
-		super();
+		super(state);
 		this.state = state;
 	}
 

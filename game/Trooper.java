@@ -10,6 +10,7 @@ public class Trooper extends Enemy
 	public Trooper(double position, GameState state) 
 	{
 		super(position, state);
+		health = 50;
 	}
 	
 	public void draw(Graphics g) {
@@ -32,6 +33,14 @@ public class Trooper extends Enemy
 			state.removeGameObject(this);
 			state.changeLifeCounter(-3);
 		}
+		
+		if (health <= 0)
+		{
+			state.removeGameObject(this);
+			state.changeCredits(2);
+			state.changeScore(5);
+		}
+		
 	}
 
 	@Override
@@ -40,5 +49,11 @@ public class Trooper extends Enemy
 		Path path = ResourceLoader.getLoader().getPath("path.txt");
 		Point point = path.getPathPosition(position);
 		return point;
+	}
+
+	@Override
+	public void takeDamage(int damage) {
+		health -= damage;
+		
 	}
 }

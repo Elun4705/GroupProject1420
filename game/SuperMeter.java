@@ -5,8 +5,12 @@ import java.awt.Graphics;
 
 public class SuperMeter extends Effects {
 
+	public SuperMeter(GameState state) {
+		super(state);
+		// TODO Auto-generated constructor stub
+	}
+
 	double percentCharged = 0.0;
-	private GameState state;
 	@Override
 	public void update(double timeElapsed) {
 		// TODO Auto-generated method stub
@@ -18,9 +22,12 @@ public class SuperMeter extends Effects {
 		if(state.isMouseClicked())
 		{
 			if(state.getMouseX() >= 100 && state.getMouseX() < 600
-					&& state.getMouseY() >= 500 && state.getMouseY() < 550)
+					&& state.getMouseY() >= 500 && state.getMouseY() < 550 && percentCharged >= 1.0)
 			{
 				//destroy all enemies
+				state.destroyAllEnemies();
+				percentCharged = 0.0;
+				
 			}
 		}
 

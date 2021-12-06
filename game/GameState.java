@@ -155,6 +155,20 @@ public class GameState
 		gameStarted = true;
 	}
 	
+	public void destroyAllEnemies()
+	{
+		for(Animatable object : gameObjects)
+		{
+			if(object.getClass() == Trooper.class || object.getClass() == DarkTrooper.class)
+			{
+				((Enemy) object).takeDamage(1000000);
+			}
+			
+			
+			
+		}
+	}
+	
 	public Enemy getClosestEnemy(int xPos, int yPos)
 	{
 		Point inputPoint = new Point(xPos,yPos);

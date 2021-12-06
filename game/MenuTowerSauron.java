@@ -22,7 +22,7 @@ public class MenuTowerSauron extends TowerSauron
 					state.getCredits() >= 10)
 			{
 				state.addGameObject(new MouseTowerSauron(state.getMouseX(),state.getMouseY(),state));
-				state.changeCredits(-10);
+				state.changeCredits(-20);
 			}		
 			
 		}

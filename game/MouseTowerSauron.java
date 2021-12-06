@@ -21,12 +21,12 @@ public class MouseTowerSauron extends TowerSauron
 		{
 			if(state.getMouseX() < 600-13)
 			{
-				state.addGameObject(new GameTower(xPosition-12, yPosition-20, state));
+				state.addGameObject(new GameTowerSauron(xPosition-12, yPosition-20, state));
 				state.removeGameObject(this);
 			}  else
 			{
 				state.removeGameObject(this);
-				state.changeCredits(10);
+				state.changeCredits(20);
 			}
 		}
 	}
@@ -34,8 +34,11 @@ public class MouseTowerSauron extends TowerSauron
 	@Override
 	public void draw(Graphics g) 
 	{
-		g.setColor(Color.GREEN);
-		g.fillRect(xPosition-12, yPosition-20, 25, 40);
+		g.setColor(Color.BLACK);
+		g.fillRect(xPosition, yPosition, 25, 40);
+		
+		g.setColor(Color.ORANGE);
+		g.fillOval(xPosition, yPosition-10, 25, 25);
 	}
 
 }

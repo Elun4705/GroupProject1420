@@ -20,6 +20,7 @@ public class GameState
 	private int credits = 100, lifeCounter = 10, score = 0;
 	private boolean mouseClicked;
 	private boolean gameOver = false;
+	private boolean gameStarted = false;
 	
 	public GameState ()
 	{
@@ -136,6 +137,15 @@ public class GameState
 	{
 		gameOver = condition;
 
+	}
+	
+	public boolean getGameStarted()
+	{
+		return gameStarted;
+	}
+	public void startGame()
+	{
+		gameStarted = true;
 	}
 	
 }

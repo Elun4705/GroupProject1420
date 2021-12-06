@@ -5,6 +5,8 @@ package game;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -12,7 +14,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GameView extends JPanel implements MouseListener, MouseMotionListener
+public class GameView extends JPanel implements MouseListener, MouseMotionListener, KeyListener
 {
 	// This constant is needed to get rid of a warning.  It won't matter to us.
 
@@ -58,6 +60,8 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
 		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		this.addKeyListener(this);
+		this.setFocusable(true);
 
 		
 	}
@@ -106,6 +110,27 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
 	public void mouseMoved(MouseEvent e) 
 	{
 		state.setMouseLocation(e.getX(), e.getY());
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+		if(e.getKeyChar() == 's')
+		{
+			state.startGame();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

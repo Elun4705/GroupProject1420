@@ -5,7 +5,10 @@ package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GameControl implements Runnable, ActionListener
@@ -34,9 +37,10 @@ public class GameControl implements Runnable, ActionListener
     	
     	state.addGameObject(new Backdrop());
     	state.addGameObject(new Menu(state));
-    //	state.addGameObject(new Trooper(0.0,state));
-    	//state.addGameObject(new DarkTrooper(0.0,state));
+    	state.addGameObject(new StartPrompt(state));
     	
+    	view.repaint();
+
     	
     	// Take timer out of GameView
     	Timer timer = new Timer(1/*17*/, this);
@@ -51,6 +55,13 @@ public class GameControl implements Runnable, ActionListener
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if(state.getGameStarted() == false)
+		{
+			state.updateAll();
+			view.repaint();
+			return;
+		}
 		
 		if (state.getGameOver() == false) 
 		{
@@ -70,4 +81,6 @@ public class GameControl implements Runnable, ActionListener
 			view.repaint();
 		}
 	}
+
+
 }

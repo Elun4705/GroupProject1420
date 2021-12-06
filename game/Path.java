@@ -40,6 +40,21 @@ public class Path {
 
 	}
 	
+	public Path(int startX, int startY, int endX, int endY)
+	{
+
+		//Declares parallel arrays of the correct size
+		xCoords = new int[2];
+		yCoords = new int[2];
+		
+		xCoords[0] = startX;
+		xCoords[1] = endX;
+		
+		yCoords[0] = startY;
+		yCoords[1] = endY;
+
+	}
+	
 	public Point returnClosestPoint(int xPos, int yPos)
 	{
 		Point inputPoint = new Point(xPos,yPos);

@@ -9,6 +9,7 @@ public class Lava extends Effects {
 
 	int lifeTime = 2;
 	int xTarget,yTarget;
+	
 	public Lava(int xPosition, int yPosition, GameState state, int xTarget, int yTarget) {
 		super(state);
 		this.xPosition = xPosition;

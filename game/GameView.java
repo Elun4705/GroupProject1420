@@ -89,7 +89,6 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
 	
 	public void mousePressed(MouseEvent e) 
 	{
-		
 		state.setMouseClicked();
 		
 	}
